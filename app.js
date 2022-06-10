@@ -60,7 +60,7 @@ app.use(
     cookie: {
       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
       maxAge: 100 * 60 * 60 * 24 * 7,
-      domain: "/",
+      domain: "fc-24.herokuapp.com/",
       sameSite: "none",
       secure: true,
     },
