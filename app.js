@@ -1,46 +1,50 @@
-require('dotenv').config()
-//Packages
+require("dotenv").config();
 const express = require("express");
-const app = express();
-const bodyparser = require('body-parser')
-const mongoose  = require("mongoose");
-const MongoStore = require("connect-mongo");
+const mongoose = require("mongoose");
 const cors = require("cors");
+const passport = require("passport");
+const passportLocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
-const passport = require("passport")
+const bcrypt = require("bcrypt");
 const session = require("express-session");
+const User = require("./models/user");
 
-//Requiring Routes
-const authRoutes = require("./routes/auth");
-const dashboardRoutes = require("./routes/dashboard")
-const lendingRoutes = require("./routes/lenderRoutes")
-let dbUrl;
-if(process.env.NODE_ENV !== "production"){
-    dbUrl = "mongodb://localhost:27017/test"
-}else{
-    dbUrl=process.env.DBURL
-}
+const app = express();
+let dbUrl = "mongodb://localhost:27017/test"
+if(process.env.NODE_ENV === "production")
+  dbUrl = process.env.DB_URL;
 
-//DB Connection
-mongoose.connect(dbUrl)
+const secret = process.env.SECRET;
 
+mongoose.connect(
+  dbUrl,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => {
+    console.log("database Connected");
+  }
+);
+
+const auth = require("./routes/auth");
+const dashboard = require("./routes/dashboard");
+const lenderRoutes = require("./routes/lenderRoutes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(
-    cors({
-      origin: ["http://localhost:3000"],
-      credentials: true,
-      methods: ["GET", "POST"],
-    })
-  );
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
-
-const secret = process.env.SECRET;
 
 app.use(cookieParser(secret));
-app.set("trust proxy", 1);
+// app.set("trust proxy", 1);
+
 app.use(
   session({
     name: "Session1.0",
@@ -55,24 +59,22 @@ app.use(
     cookie: {
       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
       maxAge: 100 * 60 * 60 * 24 * 7,
-      domain: "fc-24.herokuapp.com/",
+      domain: "/",
       sameSite: "none",
       secure: true,
     },
   })
 );
 
-// passport initialisation
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 require("./passportConfig")(passport);
 
-console.log("fsd")
-//Routes
-app.use("/", authRoutes);
-app.use("/dashboard", dashboardRoutes);
-app.use("/lender", lendingRoutes)
+app.use("/", auth);
+app.use("/dashboard", dashboard);
+app.use("/lender", lenderRoutes);
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, ()=>console.log(`Listening at port ${port}`));
+const port = process.env.PORT || 4000;
+app.listen(port, () => console.log(`listening at port: ${port}`));
