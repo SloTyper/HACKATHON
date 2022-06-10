@@ -46,22 +46,22 @@ router.post("/login", (req, res, next) => {
     console.log("LLLLLLLLLL");
     console.log("req.body", req.body.username);
     res.send(req.body);
-    // User.findOne({ username: req.body.username }, async (err, doc) => {
-    //   if (err) throw err;
-    //   if (doc) res.send("User Already Exists");
-    //   if (!doc) {
-    //     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    //     const newUser = new User({
-    //       username: req.body.username,
-    //       password: hashedPassword,
-    //     });
-    //     await newUser.save();
-    //     req.logIn(newUser, (err) => {
-    //       if (err) throw err;
-    //       return res.send({ created: true, newUser });
-    //     });
-    //   }
-    // });
+    User.findOne({ username: req.body.username }, async (err, doc) => {
+      if (err) throw err;
+      if (doc) res.send("User Already Exists");
+      if (!doc) {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const newUser = new User({
+          username: req.body.username,
+          password: hashedPassword,
+        });
+        await newUser.save();
+        req.logIn(newUser, (err) => {
+          if (err) throw err;
+          return res.send({ created: true, newUser });
+        });
+      }
+    });
   });
 
 module.exports = router;
