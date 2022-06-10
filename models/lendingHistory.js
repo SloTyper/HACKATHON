@@ -7,10 +7,16 @@ const lendingHistorySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "user",
     },
+    book: {
+        type: Schema.Types.ObjectId,
+        ref: "book"
+    },
     borrower: {
         type: Schema.Types.ObjectId,
         ref: "user"
     },
+    dateOfBorrowing: String,
+    dateOfReturn: String,
     modeOfDelivery: {
         type: String,
     },

@@ -13,11 +13,12 @@ const bookSchema = new Schema({
     about: {
         type: String,
     },
+    pictures: [String],
     genre: {
         type: [String]
     },
     owner: {
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
     borrowed: {
@@ -26,7 +27,11 @@ const bookSchema = new Schema({
     },
     numberOfTimesBorrowed: {
         type: Number
-    }
+    },
+    lendingHistory: [{
+        type: Schema.Types.ObjectId,
+        ref: "lendinghistory"
+    }]
 })
 
 module.exports = mongoose.model("Book", bookSchema);

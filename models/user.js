@@ -11,10 +11,16 @@ const userSchema = new Schema({
         type: String
     },
     numberofBorrowedBooks: Number,
-    lendingList: {
+    borrowedList:{
+        type: [{Type: Schema.Types.ObjectId, ref: "book"}]
+    },
+    lendingbooklist: {
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: "book"}]
+    },
+    lendingHistory: [{
         type: Schema.Types.ObjectId,
-        ref: "lendinglist"
-    }
+        ref: "lendinghistory"
+    }]
 });
 
 module.exports = mongoose.model("User", userSchema);

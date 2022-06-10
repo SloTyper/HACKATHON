@@ -68,26 +68,6 @@ router.post("/login", (req, res, next) => {
              });
            }
     })
-    // User.findOne({ username: req.body.username }, async (err, doc) => {
-    //   if (err){
-    //     console.log("!!!!", err);
-    //     // throw err;
-    //     res.statu
-    //   }
-    //   if (doc) res.send("User Already Exists");
-    //   if (!doc) {
-    //     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    //     const newUser = new User({
-    //       username: req.body.username,
-    //       password: hashedPassword,
-    //     });
-    //     await newUser.save();
-    //     req.logIn(newUser, (err) => {
-    //       if (err) throw err;
-    //       return res.send({ created: true, newUser });
-    //     });
-    //   }
-    // });
   });
 
 module.exports = router;
