@@ -30,14 +30,14 @@ app.use(express.json());
 
 app.use(
     cors({
-      origin: ["https://62a3b243552b2d1369719c11--zesty-axolotl-e7aeb7.netlify.app/"],
+      origin: ["https://62a3b7f860f8711bc200727d--zesty-axolotl-e7aeb7.netlify.app/"],
       credentials: true,
       methods: ["GET", "POST"],
     })
   );
 
   app.all('/*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://62a3b243552b2d1369719c11--zesty-axolotl-e7aeb7.netlify.app/");
+    res.header("Access-Control-Allow-Origin", "https://62a3b7f860f8711bc200727d--zesty-axolotl-e7aeb7.netlify.app/");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
   });
