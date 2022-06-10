@@ -11,7 +11,9 @@ const passport = require("passport")
 const session = require("express-session");
 
 //Requiring Routes
-const authRoutes = require("./routes/auth")
+const authRoutes = require("./routes/auth");
+const lendingRoutes = require("./routes/lendingRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes")
 
 let dbUrl;
 if(process.env.NODE_ENV !== "production"){
@@ -67,7 +69,9 @@ require("./passportConfig")(passport);
 
 console.log("fsd")
 //Routes
-app.use("/", authRoutes)
+app.use("/", authRoutes);
+app.use("/dashboard", dashboardRoutes);
+app.use("/lender", lendingRoutes)
 
 const port = process.env.PORT || 3000;
 
