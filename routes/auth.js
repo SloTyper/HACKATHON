@@ -42,29 +42,32 @@ router.post("/login", (req, res, next) => {
     else res.send({ isLoggedOut: false });
   });
 
-  router.post("/register", (req, res) => {
+  router.post("/register",await (req, res) => {
     console.log("LLLLLLLLLL");
     console.log("req.body", req.body.username);
     res.send(req.body);
-    User.findOne({ username: req.body.username }, async (err, doc) => {
-      if (err){
-        console.log("!!!!", err);
-        throw err;
-      }
-      if (doc) res.send("User Already Exists");
-      if (!doc) {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const newUser = new User({
-          username: req.body.username,
-          password: hashedPassword,
-        });
-        await newUser.save();
-        req.logIn(newUser, (err) => {
-          if (err) throw err;
-          return res.send({ created: true, newUser });
-        });
-      }
-    });
+    const users = await User.find({});
+    console.log(users);
+    // User.findOne({ username: req.body.username }, async (err, doc) => {
+    //   if (err){
+    //     console.log("!!!!", err);
+    //     // throw err;
+    //     res.statu
+    //   }
+    //   if (doc) res.send("User Already Exists");
+    //   if (!doc) {
+    //     const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    //     const newUser = new User({
+    //       username: req.body.username,
+    //       password: hashedPassword,
+    //     });
+    //     await newUser.save();
+    //     req.logIn(newUser, (err) => {
+    //       if (err) throw err;
+    //       return res.send({ created: true, newUser });
+    //     });
+    //   }
+    // });
   });
 
 module.exports = router;
