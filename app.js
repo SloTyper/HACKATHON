@@ -1,6 +1,7 @@
 require('dotenv').config()
 //Packages
 const express = require("express");
+const app = express();
 const bodyparser = require('body-parser')
 const mongoose  = require("mongoose");
 const MongoStore = require("connect-mongo");
@@ -22,10 +23,9 @@ if(process.env.NODE_ENV !== "production"){
 //DB Connection
 mongoose.connect(dbUrl)
 
-const app = express();
 
-app.use(bodyparser.json())
-app.use(bodyparser.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(
     cors({
