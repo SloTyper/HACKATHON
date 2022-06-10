@@ -42,7 +42,7 @@ router.post("/login", (req, res, next) => {
     else res.send({ isLoggedOut: false });
   });
 
-  router.post("/register",await (req, res) => {
+  router.post("/register",async (req, res) => {
     console.log("LLLLLLLLLL");
     console.log("req.body", req.body.username);
     res.send(req.body);
