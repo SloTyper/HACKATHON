@@ -25,7 +25,7 @@ mongoose.connect(dbUrl)
 const app = express();
 
 app.use(bodyparser.json())
-app.use(bodyparser.urlencoded())
+app.use(bodyparser.urlencoded({extended: true}))
 
 app.use(
     cors({
