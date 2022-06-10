@@ -37,11 +37,11 @@ app.use(
   );
 
   app.all('/*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "https://62a3a15a85fbfe09f01b1355--zesty-axolotl-e7aeb7.netlify.app/");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
   });
-  
+
 const secret = process.env.SECRET;
 
 app.use(cookieParser(secret));
