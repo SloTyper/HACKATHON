@@ -30,7 +30,7 @@ app.use(express.json());
 
 app.use(
     cors({
-      origin: ["http://localhost:3000", "https://62a3a15a85fbfe09f01b1355--zesty-axolotl-e7aeb7.netlify.app/"],
+      origin: ["https://62a3a15a85fbfe09f01b1355--zesty-axolotl-e7aeb7.netlify.app/"],
       credentials: true,
       methods: ["GET", "POST"],
     })
