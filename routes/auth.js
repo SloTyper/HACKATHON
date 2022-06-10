@@ -48,7 +48,7 @@ router.post("/login", (req, res, next) => {
     res.send(req.body);
     User.findOne({ username: req.body.username }, async (err, doc) => {
       if (err){
-        console.log(!!!!);
+        console.log("!!!!", err);
         throw err;
       }
       if (doc) res.send("User Already Exists");
