@@ -12,9 +12,8 @@ const session = require("express-session");
 
 //Requiring Routes
 const authRoutes = require("./routes/auth");
-const lendingRoutes = require("./routes/lendingRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes")
-
+const lendingRoutes = require("./routes/lenderRoutes")
 let dbUrl;
 if(process.env.NODE_ENV !== "production"){
     dbUrl = "mongodb://localhost:27017/test"
