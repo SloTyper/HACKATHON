@@ -12,7 +12,7 @@ const session = require("express-session");
 
 //Requiring Routes
 const authRoutes = require("./routes/auth");
-const dashboardRoutes = require("./routes/dashboardRoutes")
+const dashboardRoutes = require("./routes/dashboard")
 const lendingRoutes = require("./routes/lenderRoutes")
 let dbUrl;
 if(process.env.NODE_ENV !== "production"){
