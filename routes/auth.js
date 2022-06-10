@@ -48,7 +48,7 @@ router.post("/login", (req, res, next) => {
 
     const users = await User.find({});
     console.log(users);
-    res.send(req.body);
+    // res.send(req.body);
     User.findOne({ username: req.body.username }, async (err, doc) => {
       if(err){
         console.log("$$$$$$$$$$$$$$");
