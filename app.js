@@ -12,7 +12,7 @@ const session = require("express-session");
 //Requiring Routes
 const authRoutes = require("./routes/auth")
 
-let dbUrl; 
+let dbUrl;
 if(process.env.NODE_ENV !== "production"){
     dbUrl = "mongodb://localhost:27017/test"
 }else{
@@ -25,6 +25,7 @@ mongoose.connect(dbUrl)
 const app = express();
 
 app.use(bodyparser.json())
+app.use(bodyparser.urlencoded())
 
 app.use(
     cors({
