@@ -44,7 +44,7 @@ router.post("/login", (req, res, next) => {
 
   router.post("/register", (req, res) => {
     console.log("LLLLLLLLLL");
-    console.log("req.body", req.body);
+    console.log("req.body", req);
     res.send("yeyeyeye");
     // User.findOne({ username: req.body.username }, async (err, doc) => {
     //   if (err) throw err;
