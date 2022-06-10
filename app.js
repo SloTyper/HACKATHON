@@ -65,7 +65,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 require("./passportConfig")(passport);
 
-
+console.log("fsd")
 //Routes
 app.use("/", authRoutes)
 
