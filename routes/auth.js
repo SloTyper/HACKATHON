@@ -26,7 +26,7 @@ router.post("/login", (req, res, next) => {
       }
     })(req, res, next);
   });
-  
+
   router.get("/getuser", async (req, res) => {
     if (req.user) {
       const user = await User.findOne(req.user)
@@ -35,15 +35,17 @@ router.post("/login", (req, res, next) => {
       res.send({ isLoggedIn: false });
     }
   });
-  
+
   router.get("/logout", (req, res) => {
     req.logout();
     if (!req.user) res.send({ isLoggedOut: true });
     else res.send({ isLoggedOut: false });
   });
-  
+
   router.post("/register", (req, res) => {
-    console.log("LLLLLLLLLL")
+    console.log("LLLLLLLLLL");
+    console.log("req.body", req.body);
+    res.send("yeyeyeye");
     // User.findOne({ username: req.body.username }, async (err, doc) => {
     //   if (err) throw err;
     //   if (doc) res.send("User Already Exists");
