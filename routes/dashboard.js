@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../models/user")
 // routes start with /dashboard
 router.get("/", async(req, res)=>{
-    const user = await User.findOne({_id: req.user._id}).populate("borrowedList")
+    const user = await User.find({_id: req.user._id}).populate("borrowedList")
     console.log(req.user, "user: ", user)
     res.send(user);
 })
