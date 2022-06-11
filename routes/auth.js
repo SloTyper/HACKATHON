@@ -66,6 +66,7 @@ router.post("/register",async (req, res) => {
         console.log(newUser);
         req.logIn(newUser, (err) => {
           if (err) throw err;
+          console.log(req.user, "req.user at req.login")
           return res.send({ created: true, newUser });
         });
     }
