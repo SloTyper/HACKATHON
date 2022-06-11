@@ -10,6 +10,7 @@ const bookSchema = new Schema({
         type: String,
         Required: true
     },
+    mrp: String,
     about: {
         type: String,
     },

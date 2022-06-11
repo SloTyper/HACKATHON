@@ -55,7 +55,6 @@ router.post("/register",async (req, res) => {
   // res.send(req.body);
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if(err){
-      console.log("$$$$$$$$$$$$$$");
       console.log(err)
     }
     console.log(doc)
