@@ -21,6 +21,8 @@ const bookSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
+    lattitude: String,
+    longitude: String,
     borrowed: {
         type: Boolean,
         default: false
