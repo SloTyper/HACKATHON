@@ -65,8 +65,8 @@ app.use(
 
 
 
-app.use(passport.initialize());
 require("./passportConfig")(passport);
+app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/", auth);
