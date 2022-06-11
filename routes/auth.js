@@ -52,6 +52,7 @@ router.post("/register",async (req, res) => {
       console.log("$$$$$$$$$$$$$$");
       console.log(err)
     }
+    console.log(doc)
     if (doc) res.send("User Already Exists");
     if (!doc) {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
