@@ -31,7 +31,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "https://62a405931ac5a04bb8301a8c--zesty-axolotl-e7aeb7.netlify.app/",
+    origin: "https://62a405931ac5a04bb8301a8c--zesty-axolotl-e7aeb7.netlify.app",
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
