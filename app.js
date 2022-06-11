@@ -6,6 +6,7 @@ const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
+
 const session = require("express-session");
 const User = require("./models/user");
 const MongoStore = require("connect-mongo");
@@ -19,6 +20,7 @@ const secret = process.env.SECRET;
 
 mongoose.connect(dbUrl)
 
+app.use(cookieParser(secret));
 
 const auth = require("./routes/auth");
 const dashboard = require("./routes/dashboard");
@@ -38,7 +40,6 @@ app.use(
 );
 
 
-app.use(cookieParser(secret));
 // app.set("trust proxy", 1);
 
 app.use(
@@ -65,8 +66,8 @@ app.use(
 
 
 app.use(passport.initialize());
-app.use(passport.session());
 require("./passportConfig")(passport);
+app.use(passport.session());
 
 app.use("/", auth);
 app.use("/dashboard", dashboard);
