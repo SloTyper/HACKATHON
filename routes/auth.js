@@ -30,6 +30,7 @@ router.post("/login", (req, res, next) => {
   router.get("/getuser", async (req, res) => {
     if (req.user) {
       const user = await User.findOne(req.user)
+      console.log(user);
       res.send({ isLoggedIn: true, user });
     } else {
       res.send({ isLoggedIn: false });
