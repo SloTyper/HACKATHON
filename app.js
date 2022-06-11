@@ -8,24 +8,17 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const User = require("./models/user");
+const MongoStore = require("connect-mongo");
 
 const app = express();
 let dbUrl = "mongodb://localhost:27017/test"
 if(process.env.NODE_ENV === "production")
-  dbUrl = process.env.DB_URL;
+  dbUrl = process.env.DBURL;
 
 const secret = process.env.SECRET;
 
-mongoose.connect(
-  dbUrl,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  () => {
-    console.log("database Connected");
-  }
-);
+mongoose.connect(dbUrl)
+
 
 const auth = require("./routes/auth");
 const dashboard = require("./routes/dashboard");
@@ -62,7 +55,7 @@ app.use(
     cookie: {
       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
       maxAge: 100 * 60 * 60 * 24 * 7,
-      domain: "/",
+      domain: "fc-24.herokuapp.com",
       sameSite: "none",
       secure: true,
     },
