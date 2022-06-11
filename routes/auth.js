@@ -40,8 +40,10 @@ router.post("/login", (req, res, next) => {
 
   router.get("/logout", (req, res) => {
     req.logout();
-    if (!req.user) res.send({ isLoggedOut: true });
-    else res.send({ isLoggedOut: false });
+    if (!req.user){
+      return res.send({ isLoggedOut: true });
+    }
+    else return res.send({ isLoggedOut: false });
   });
 
 router.post("/register",async (req, res) => {
